@@ -46,4 +46,14 @@ def remove_alert(alert_id):
 
 def alert_info(alert_id):
   xml = api.request("getTrigger", triggerId = alert_id)
-  print xml
+  return {
+    "device_id": api.xml_value(xml, "devId"),
+    "action": api.xml_value(xml, "action"),
+    "attr_name": api.xml_value(xml, "attrName"),
+    "operation": api.xml_value(xml, "operation"),
+    "threshold": float(api.xml_value(xml, "threshold")),
+    "address": api.xml_value(xml, "address"),
+    "msg": api.xml_value(xml, "msgText"),
+    "auto_disarm": api.xml_value(xml, "autoDisarm") == "true",
+    "disarmed": api.xml_value(xml, "disarmed") == "true",
+  }

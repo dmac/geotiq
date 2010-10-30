@@ -23,9 +23,9 @@ for device in devices:
   print "added alert:", \
         geotiq.add_alert(device, "email", "temp", ">=", "70", "dmacdougall@gmail.com", "it is hot!")
 
+  print geotiq.alert_info(geotiq.alerts(device)[0])
+
   # remove all alerts from device
   for alert in geotiq.alerts(device):
     return_code = geotiq.remove_alert(alert)
     print "removed alert %s with status %s" % (alert, return_code)
-
-# error codes
