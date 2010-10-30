@@ -21,6 +21,9 @@ def xml_nodes(xml, tag):
   dom = etree.fromstring(xml)
   return dom.findall(tag)
 
+def xml_node_values(xml, tag):
+  return [node.text for node in xml_nodes(xml, tag)]
+
 def request(request_name, **args):
   url = config.server + request_name + "?secToken=" + auth.token
   for arg in args:

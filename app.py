@@ -1,4 +1,5 @@
 import geotiq
+import time
 
 geotiq.login("dan", "thebeast")
 
@@ -16,11 +17,15 @@ for device in devices:
     print "%s: %s" % (name, value)
 
   # set device attribute
-  print "set led1:", geotiq.device_attribute(device, "led1", "0")
+  print "set led1 to 0:", geotiq.device_attribute(device, "led1", 0)
 
+  # add alert to device
+  print "added alert:", \
+        geotiq.add_alert(device, "email", "temp", ">=", "70", "dmacdougall@gmail.com", "it is hot!")
 
+  # remove all alerts from device
+  for alert in geotiq.alerts(device):
+    return_code = geotiq.remove_alert(alert)
+    print "removed alert %s with status %s" % (alert, return_code)
 
-# email trigger alert (add remove update)
-# twitter trigger alert (add remove update)
-# alert list
 # error codes
