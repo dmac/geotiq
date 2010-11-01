@@ -4,7 +4,11 @@ This module can be used to interact with your GEOTiQ device.
 
 Installation
 ------------
-To install, navigate to the directory containing setup.py and run:
+This module requires the "lxml" package.
+To install lxml, run:
+easy_install lxml
+
+To install geotiq, navigate to the directory containing setup.py and run:
 python setup.py install
 
 Function Reference
