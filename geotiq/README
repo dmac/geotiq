@@ -1,0 +1,45 @@
+GEOTiQ API
+----------
+This module can be used to interact with your GEOTiQ device.
+
+Installation
+------------
+To install, navigate to the directory containing setup.py and run:
+python setup.py install
+
+Function Reference
+------------------
+
+login(username, password)
+This function must be called before you use the rest of the GEOTiQ functions.
+
+devices()
+Returns a list of your active device ids.
+
+device_status(device_id)
+Returns the connected status of the specified device id.
+
+device_attributes(device_id)
+Returns a list of all device attributes.
+
+device_attribute(device_id, attribute)
+Returns the value of the specified attribute.
+
+device_attribute(device_id, attribute, value)
+Sets the value of the specified attribute.
+
+alerts(device_id)
+Returns a list of all alerts on the specified device.
+
+add_alert(device_id, action, attr_name, operation, threshold, address, msg)
+Add an alert to the specified device.
+action must be one of "email", "twitter".
+operation must be one of "<", "<=", ">", ">="
+threshold is the value of the attribute that will trigger the alert.
+address must be an email address or a twitter username.
+
+remove_alert(alert_id)
+Deletes the specified alert.
+
+alert_info(alert_id)
+Returns all info on the specified alert.
