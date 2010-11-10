@@ -1,7 +1,7 @@
 import geotiq
 import time
 
-geotiq.login("dan", "thebeast")
+geotiq.login("USERNAME", "PASSWORD")
 
 # device list
 devices = geotiq.devices()
@@ -21,7 +21,7 @@ for device in devices:
 
   # add alert to device
   print "added alert:", \
-        geotiq.add_alert(device, "email", "temp", ">=", "70", "dmacdougall@gmail.com", "it is hot!")
+        geotiq.add_alert(device, "email", "temp", ">=", "70", "asdf@email.com", "it is hot!")
 
   for alert in geotiq.alerts(device):
     # alert information

@@ -20,12 +20,16 @@ def device_attributes(device_id):
     attributes[valist.findtext("name")] = valist.findtext("value")
   return attributes
 
-def device_attribute(device_id, attribute, value = None):
+def device_attribute(device_id, attribute, value = None, ts_start = None, ts_end = None ):
   if value != None:
     xml = api.request("setDeviceAttribute", devId = device_id, name = attribute, value = str(value))
     return api.xml_value(xml, "retCode") == "0"
   else:
-    xml = api.request("getDeviceAttribute", devId = device_id, name = attribute)
+    if attribute.find("-ts"):
+      xml = api.request("getDeviceTS2", devId = device_id, propName = attribute, start = ts_start, end = ts_end )
+      return api.xml_values(xml)
+    else:
+      xml = api.request("getDeviceAttribute", devId = device_id, name = attribute)
     return api.xml_value(xml, "value")
 
 def alerts(device_id):

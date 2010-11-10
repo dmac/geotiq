@@ -17,6 +17,14 @@ def xml_value(xml, tag):
   dom = etree.fromstring(xml)
   return dom.findtext(tag)
 
+def xml_values(xml):
+  dom = etree.fromstring(xml)
+  data = dom.findall("tsData")
+  timeseries = {}
+  for datum in data:
+    timeseries[datum.findtext("time")] = datum.findtext("value")
+  return timeseries;
+
 def xml_nodes(xml, tag):
   dom = etree.fromstring(xml)
   return dom.findall(tag)
